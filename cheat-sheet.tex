@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+
+\usepackage[left=1cm,right=1cm,top=1cm,right=1cm]{geometry}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{\textbf{ACM/ICPC Cheat Sheet}}
+\author{Fairuzi10}
+\date{}
+
+\pagestyle{empty}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section{STL Useful Tips}
+
+\subsection{Red Black Tree GNU PBDS}
+\begin{minted}[frame=lines, tabsize=2]{cpp}
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+
+typedef tree<
+int,
+null_type, // make it int, char, or whatever so it becomes map
+less<int>,
+rb_tree_tag,
+tree_order_statistics_node_update>
+ordered_set;
+\end{minted}
+
+\section{Formula}
+
+\subsection{Cayley's Formula}
+ways to build tree = $n^{n-2}$
+
+\subsection{Point Rotation}
+$\begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} \cos { \theta  }  & -\sin { \theta  }  \\ \sin { \theta  }  & \cos { \theta  }  \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix}$
+
+\subsection{Two Line Segments Intersection}
+${ \left( { P }_{ x }, { P }_{ y } \right) }= \left( \dfrac { \left( { x }_{ 1 }{ y }_{ 2 }-{ y }_{ 1 }{ x }_{ 2 } \right) \left( { x }_{ 3 }-{ x }_{ 4 } \right) -\left( { x }_{ 1 }-{ x }_{ 2 } \right) \left( { x }_{ 3 }{ y }_{ 4 }-{ y }_{ 3 }{ x }_{ 4 } \right) \quad  }{ \left( { x }_{ 1 }-{ x }_{ 2 } \right) \left( { y }_{ 3 }-{ y }_{ 4 } \right) -\left( { y }_{ 1 }-{ y }_{ 2 } \right) \left( { x }_{ 3 }-{ x }_{ 4 } \right)  } ,\quad \dfrac { \left( { x }_{ 1 }{ y }_{ 2 }-{ y }_{ 1 }{ x }_{ 2 } \right) \left( { y }_{ 3 }-{ y }_{ 4 } \right) -\left( { y }_{ 1 }-{ y }_{ 2 } \right) \left( { x }_{ 3 }{ y }_{ 4 }-{ y }_{ 3 }{ x }_{ 4 } \right) \quad  }{ \left( { x }_{ 1 }-{ x }_{ 2 } \right) \left( { y }_{ 3 }-{ y }_{ 4 } \right) -\left( { y }_{ 1 }-{ y }_{ 2 } \right) \left( { x }_{ 3 }-{ x }_{ 4 } \right)  }  \right) $
+
+\end{document}
