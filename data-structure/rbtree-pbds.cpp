@@ -18,14 +18,10 @@ int main() {
 	setz.insert(1);
 	setz.insert(2);
 	setz.insert(5);
-	puts("--- find_by_order ---");
-	// return a pointer
-	cout << *setz.find_by_order(0) << endl;
-	cout << *setz.find_by_order(2) << endl;
-	puts("--- order_of_key ---");
-	// return an int
-	cout << setz.order_of_key(2) << endl;
-	cout << setz.order_of_key(6) << endl;
+	cout << *setz.find_by_order(0) << endl; // 1
+	cout << *setz.find_by_order(2) << endl; // 5
+	cout << setz.order_of_key(2) << endl;	// 1
+	cout << setz.order_of_key(6) << endl;	// 3
 	
 	return 0;
 }
