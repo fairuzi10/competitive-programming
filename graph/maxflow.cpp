@@ -49,10 +49,6 @@ lint dfs(int now, lint cur_flow) {
 }
 
 int main() {
-	#ifdef FAIRUZI10
-	freopen("/home/fairuzi/Documents/CP/input.in", "r", stdin);
-	#endif
-	
 	scanf("%d%d", &N, &M);
 	for (int i = 0; i < M; i++) {
 		scanf("%d%d%d", &x, &y, &z);
