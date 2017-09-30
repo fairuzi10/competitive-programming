@@ -2,6 +2,7 @@
 #define INF 1000000000
 #define MOD 1000000007
 #define MAXN 100005
+#define NIL (MAXN-1)
 #define lint long long
 #define trace(x) cout<<#x<<" = "<<x<<'\n'
 #define trace2(x, y) cout<<#x<<" = "<<x<<" "<<#y<<" = "<<y<<'\n'
