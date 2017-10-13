@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define INF 1000000000
+#define INF 0x3f3f3f3f
 #define MOD 1000000007
 #define MAXN 100005
 #define NIL (MAXN-1)
