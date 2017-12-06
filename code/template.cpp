@@ -3,12 +3,12 @@
 #define MOD 1000000007
 #define MAXN 100005
 #define NIL (MAXN-1)
-#define lint long long
 #define trace(x) cout<<#x<<" = "<<x<<'\n'
 #define trace2(x, y) cout<<#x<<" = "<<x<<" "<<#y<<" = "<<y<<'\n'
 #define tracea(arr, i) cout<<#arr<<"["<<i<<"]"<<" = "<<arr[i]<<'\n'
 #define print(arr, n) for (int iDx = 0; iDx < (n); iDx++) cout << arr[iDx] << " \n"[iDx == (n)-1]
 #define sz(x) (int)(x).size()
+typedef long long ll;
 using namespace std;
 struct ii {
 	int a, b;
