@@ -1,4 +1,4 @@
-#The Zen of Competitive Programming
+# The Zen of Competitive Programming
 
 If is better than long analysis.
 
