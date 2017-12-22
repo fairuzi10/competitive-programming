@@ -16,7 +16,7 @@
 
 \begin{document}
 \setlength{\columnseprule}{0.4pt}
-\begin{multicols}{4}
+\begin{multicols}{5}
 	\tableofcontents
 \end{multicols}
 \setlength{\columnseprule}{0pt}
@@ -26,7 +26,7 @@
 
 \section{STL Useful Tips}
 
-\subsection{Red Black Tree GNU PBDS}
+\subsection{GNU PBDS}
 \begin{cpp}
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace __gnu_pbds;
@@ -142,11 +142,11 @@ double angle(PT a, PT o, PT b) { // return AOB in rad
 // test point in polygon from sum of angle
 bool PointInPolygon(const vector<PT> &p, PT q) {
 	double sum = 0;
-	for ( int i = 0; i < (int) p.size()-1; i++ ) {
-		if ( ccw(q, p[i], p[i+1]) ) 
-			sum += angle(p[i], q, p[i+1]);
+	for (int i = 0; i < (int) p.size(); i++) {
+		if (ccw(q, p[i], p[i+1])) 
+			sum += angle(p[i], q, p[(i+1)%p.size()]);
 		else 
-			sum -= angle(p[i], q, p[i+1]);
+			sum -= angle(p[i], q, p[(i+1)%p.size()]);
 	}
 
 	return fabs(fabs(sum) - 2*PI) < EPS;
@@ -290,6 +290,53 @@ int bipartite_matching() {
 	}}}
 	return ret;
 }
+\end{cpp}
+
+\section{String}
+
+\subsection{Suffix Array}
+\begin{cpp}
+// change sa[i]+k to (sa[i]+k)%N if cyclic
+// change sa[i]+k to min(sa[i]+k, sa[i]+limit-k) and k < N to k < limit if the substring length is limited.
+
+void radix(int k) {
+	int maxi = max(300, N);
+	memset(cnt, 0, sizeof(cnt));
+	for (int i = 0; i < N; i++) cnt[sa[i]+k < N? ra[sa[i]+k]: 0]++;
+	for (int i = 0; i < maxi; i++) cnt[i] += cnt[i-1];
+	for (int i = N-1; i >= 0; i--) tsa[--cnt[sa[i]+k < N? ra[sa[i]+k]: 0]] = sa[i];
+	for (int i = 0; i < N; i++) sa[i] = tsa[i];
+}
+
+void compute_sa() {
+	for (int i = 0; i < N; i++) ra[i] = str[i];
+	for (int i = 0; i < N; i++) sa[i] = i;
+	for (int k = 1; k < N; k <<= 1) {
+		radix(k);
+		radix(0);
+		tra[sa[0]] = 0;
+		for (int i = 1; i < N; i++)
+			tra[sa[i]] = ra[sa[i]] == ra[sa[i-1]] && 
+				ra[sa[i]+k] == ra[sa[i-1]+k]? tra[sa[i-1]]: tra[sa[i-1]]+1;
+		for (int i = 0; i < N; i++) ra[i] = tra[i];
+		if (ra[sa[N-1]] == N-1) break;
+}}
+
+void compute_lcp() {
+	int cur_lcp = 0;
+	for (int i = 0; i < N; i++) {
+		if (ra[i] == 0) {
+			lcp[i] = 0;
+			continue;
+		}
+		cur_lcp = max(0, cur_lcp-1);
+		while (str[i+cur_lcp] == str[sa[ra[i]-1]+cur_lcp]) cur_lcp++;
+		lcp[i] = cur_lcp;
+}}
+
+// in main() 
+str += '$' // if not cyclic
+N = str.length()
 \end{cpp}
 
 \end{multicols*}
