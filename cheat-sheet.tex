@@ -4,10 +4,8 @@
 \usepackage{multicol, minted}
 \usepackage[left=1cm,right=1cm,top=1cm,right=1cm]{geometry}
 
-% Code box macro
-\newenvironment{cpp}
-	{\VerbatimEnvironment \begin{minted}[frame=single, tabsize=2, breaklines]{cpp}}
-	{\end{minted}}
+% Change style of cpp code
+\newminted{cpp}{frame=single, tabsize=2, breaklines, mathescape}
 
 % Cover
 \title{\textbf{ACM ICPC Cheat Sheet}}
@@ -27,19 +25,19 @@
 	\section{STL Useful Tips}
 
 	\subsection{GNU PBDS}
-	\begin{cpp}
+	\begin{cppcode}
 		#include <ext/pb_ds/assoc_container.hpp>
 		using namespace __gnu_pbds;
 
 		// change null_type to int to make it a map<int, int>
 		typedef tree<int, null_type, less<int>, rb_tree_tag,
 		tree_order_statistics_node_update> ordered_set;
-	\end{cpp}
+	\end{cppcode}
 
 	\section{Geometry}
 
 	\subsection{Geometry Library}
-	\begin{cpp}
+	\begin{cppcode}
 		struct PT {
 				double x, y;
 				PT() {}
@@ -204,13 +202,13 @@
 		}
 		return c / scale;
 		}
-	\end{cpp}
+	\end{cppcode}
 
 	\section{Graph}
 
 	\subsection{Max Flow Dinic}
-	\begin{cpp}
-		// run in O(V^2*E)
+	\begin{cppcode}
+		// run in $O(V^2E)$
 		bool bfs() {
 				fill_n(lvl, MAXN, INF);
 				lvl[SOURCE] = 0;
@@ -244,11 +242,11 @@
 		while (bfs()) {
 				ans += dfs(SOURCE, INF);
 			}
-	\end{cpp}
+	\end{cppcode}
 
 	\subsection{Bipartite Matching Hopcroft Karp}
-	\begin{cpp}
-		// run in O(E*sqrt(V))
+	\begin{cppcode}
+		// run in $O(E\sqrt{V})$
 		bool bfs() {
 				memset(lvl, 63, sizeof(lvl));
 				for (int i = 0; i < N; i++) {
@@ -290,12 +288,13 @@
 									}}}
 				return ret;
 			}
-	\end{cpp}
+	\end{cppcode}
 
 	\section{String}
 
 	\subsection{Suffix Array}
-	\begin{cpp}
+	\begin{cppcode}
+		// run in $O(N\log{N})$
 		// change sa[i]+k to (sa[i]+k)%N if cyclic
 		// change sa[i]+k to min(sa[i]+k, sa[i]+limit-k) and k < N to k < limit if the substring length is limited.
 
@@ -337,7 +336,7 @@
 		// in main()
 		str += '$' // if not cyclic
 		N = str.length()
-	\end{cpp}
+	\end{cppcode}
 
 \end{multicols*}
 \end{document}
