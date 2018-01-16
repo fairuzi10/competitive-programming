@@ -17,7 +17,8 @@ http://www.spoj.com/problems/ADAGRAFT/
 
 ### Suffix Array
 
-http://www.spoj.com/problems/ADASTRNG/
+http://www.spoj.com/problems/ADASTRNG/  
+
 http://codeforces.com/gym/101470 B. Circle of digits
 
 
@@ -25,7 +26,6 @@ http://codeforces.com/gym/101470 B. Circle of digits
 ## Geometry
 
 http://codeforces.com/gym/101635 K. Blowing candles
-
 
 
 ## Graph
