@@ -1,0 +1,144 @@
+\section{Graph}
+
+\subsection{Max Flow Dinic}
+\begin{cppcode}
+	// run in $O(V^2E)$
+	bool bfs() {
+		fill_n(lvl, MAXN, INF);
+		lvl[SOURCE] = 0;
+		q.push(SOURCE);
+		while (!q.empty()) {
+				int now = q.front();
+				q.pop();
+				if (lvl[now]+1 > lvl[SINK]) continue;
+				for (auto i: edge[now]) {
+						if (lvl[now]+1 < lvl[i] && rem[now][i]) {
+								lvl[i] = lvl[now]+1;
+								q.push(i);
+		}}}
+		return lvl[SINK] != INF;
+	}
+	int dfs(int now, int cur_flow) {
+		if (now == SINK) return cur_flow;
+		int used_flow = 0;
+		for (auto i: edge[now]) {
+				if (lvl[i] == lvl[now]+1 && rem[now][i]) {
+						int next_flow = dfs(i, min(rem[now][i], cur_flow-used_flow));
+						used_flow += next_flow;
+						rem[now][i] -= next_flow;
+						rem[i][now] += next_flow;
+						if (used_flow == cur_flow) return used_flow;
+		}}
+		return used_flow;
+	}
+
+	// in main()
+	while (bfs()) {
+		ans += dfs(SOURCE, INF);
+	}
+\end{cppcode}
+
+\subsection{Bipartite Matching Kuhn}
+\begin{cppcode}
+	// run in $O(EV)$
+	bool kuhn(int now) {
+		for (auto i: edge[now]) {
+			if (sudah[i]) continue;
+			sudah[i] = 1;
+			if (par[i] == -1 || kuhn(par[i])) {
+				par[i] = now;
+				return 1;
+			}
+		}
+		return 0;
+	}
+	
+	// in main()
+	for (int i = 0, n = row.size(); i < n; i++) {
+		sudah.reset();
+		if (kuhn(i)) ans++;
+	}
+\end{cppcode}
+
+\subsection{Bipartite Matching Hopcroft Karp}
+\begin{cppcode}
+	// run in $O(E\sqrt{V})$
+	bool bfs() {
+		memset(lvl, 63, sizeof(lvl));
+		for (int i = 0; i < N; i++) {
+				if (pairL[i] == NIL) {
+						lvl[i] = 0;
+						q.push(i); }}
+		while (!q.empty()) {
+				int now = q.front(); q.pop();
+				for (auto i: edge[now]) {
+						if (lvl[pairR[i]] > lvl[now]+1) {
+								lvl[pairR[i]] = lvl[now]+1;
+								q.push(pairR[i]);
+		}}}
+		return lvl[NIL] < INF;
+	}
+
+	bool dfs(int now) {
+		if (now == NIL) return 1;
+		for (auto i: edge[now]) {
+				if (lvl[pairR[i]] == lvl[now]+1) {
+						if (dfs(pairR[i])) {
+								pairL[now] = i;
+								pairR[i] = now;
+								return 1;
+							} else lvl[pairR[i]] = INF;
+		}}
+		return 0;
+	}
+
+	int bipartite_matching() {
+		for (int i = 0; i < N; i++) pairL[i] = NIL;
+		for (int i = 0; i < M; i++) pairR[i] = NIL;
+		int ret = 0;
+		while (bfs()) {
+				for (int i = 0; i < N; i++) {
+						if (lvl[i] == 0) {
+								if (dfs(i)) ret++;
+								else lvl[i] = INF;
+		}}}
+		return ret;
+	}
+\end{cppcode}
+
+\subsection{Min Cost Bipartite Matching}
+\begin{cppcode}
+	vector<int> u(N+1), v(M+1), p(M+1), way(M+1);
+	for (int i=1; i<=N; ++i) {
+		p[0] = i;
+		int j0 = 0;
+		vector<int> minv (M+1, INF);
+		vector<char> used (M+1, false);
+		do {
+			used[j0] = true;
+			int i0 = p[j0],  delta = INF,  j1;
+			for (int j=1; j<=M; ++j) {
+				if (!used[j]) {
+					int cur = a[i0][j]-u[i0]-v[j];
+					if (cur < minv[j]) minv[j] = cur,  way[j] = j0;
+					if (minv[j] < delta) delta = minv[j],  j1 = j;
+				}
+			}
+			for (int j=0; j<=M; ++j) {
+				if (used[j]) u[p[j]] += delta,  v[j] -= delta;
+				else minv[j] -= delta;
+			}
+			j0 = j1;
+		} while (p[j0] != 0);
+		do {
+			int j1 = way[j0];
+			p[j0] = p[j1];
+			j0 = j1;
+		} while (j0);
+	}
+	int cost = -v[0]
+
+	// if you need to know pair <row, col>
+	vector<int> ans (N+1);
+	for (int j = 1; j <= M; j++) ans[p[j]] = j;
+\end{cppcode}

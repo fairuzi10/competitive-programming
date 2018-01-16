@@ -1,0 +1,32 @@
+\documentclass[a4paper, landscape]{article}
+
+% Package
+\usepackage{multicol, minted}
+\usepackage[left=1cm,right=1cm,top=1cm,right=1cm]{geometry}
+
+% Change style of cpp code
+\newminted{cpp}{frame=single, tabsize=2, breaklines, mathescape}
+
+% Cover
+\title{\textbf{ACM ICPC Cheat Sheet}}
+\author{Fairuzi10}
+\date{}
+
+\begin{document}
+\setlength{\columnseprule}{0.4pt}
+\begin{multicols}{5}
+	\tableofcontents
+\end{multicols}
+\setlength{\columnseprule}{0pt}
+
+\begin{multicols*}{2}
+	\maketitle
+
+	\input{stl}
+	\input{geometry}
+	\input{graph}
+	\input{string}
+	\input{math}
+
+\end{multicols*}
+\end{document}
