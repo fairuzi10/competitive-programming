@@ -61,12 +61,15 @@ http://codeforces.com/problemset/problem/913/C
 
 
 ## Others
-### Set
-http://codeforces.com/problemset/problem/915/E  
-http://codeforces.com/problemset/problem/899/E   
-
 ### Cycle
 http://codeforces.com/problemset/problem/915/D  
 
 ### Backtracking
 http://codeforces.com/problemset/problem/915/C  
+
+### Hard to Implement
+http://codeforces.com/problemset/problem/912/C
+
+### Set
+http://codeforces.com/problemset/problem/915/E  
+http://codeforces.com/problemset/problem/899/E   
