@@ -108,6 +108,7 @@
 
 \subsection{Min Cost Bipartite Matching}
 \begin{cppcode}
+	// make sure N <= M
 	vector<int> u(N+1), v(M+1), p(M+1), way(M+1);
 	for (int i=1; i<=N; ++i) {
 		p[0] = i;
