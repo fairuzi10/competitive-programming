@@ -18,6 +18,7 @@ int main() {
 	setz.insert(1);
 	setz.insert(2);
 	setz.insert(5);
+	setz.erase(1); // buat delete ppak
 	cout << *setz.find_by_order(0) << endl; // 1
 	cout << *setz.find_by_order(2) << endl; // 5
 	cout << setz.order_of_key(2) << endl;	// 1
