@@ -20,13 +20,31 @@ struct iii {
 };
 int TC, N, M, K, Q, x, y, z;
 
+void reset() {
+	
+}
 
+void read() {
+	
+}
+
+void precompute() {
+	
+}
+
+void solve() {
+	
+}
 
 int main() {
 	#ifdef FAIRUZI10
 	freopen("/home/fairuzi/Documents/CP/input.in", "r", stdin);
 	#endif
 	
+	reset();
+	read();
+	precompute();
+	solve();
 	
 	
 	return 0;
